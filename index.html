@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>CIFAR-10 Image Classification</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="logo">
+				<span class="icon fa-images"></span>
+			</div>
+			<div class="content">
+				<div class="inner">
+					<h1>CIFAR-10 Image Classification</h1>
+					<p>Explore the power of Convolutional Neural Networks (CNNs) in classifying images from the <a
+							href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10 dataset</a>. A benchmark project
+						in deep learning research.</p>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="#abstract">Abstract</a></li>
+					<li><a href="#introduction">Intro</a></li>
+					<li><a href="#method">Method</a></li>
+					<li><a href="#colab-notebook">Code</a></li>
+					<li><a href="#team">Team</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Abstract -->
+			<article id="abstract">
+				<h2 class="major">Abstract</h2>
+				<span class="image main"><img src="./images/cifar10_sample.png" alt="CIFAR-10 Sample Images" /></span>
+				<p>The CIFAR-10 dataset is a collection of 60,000 32x32 color images divided into 10 distinct
+					categories, including airplanes, cars, birds, and more. This dataset is widely recognized as a
+					benchmark for image classification tasks in the field of deep learning.</p>
+				<p>This study introduces a Convolutional Neural Network (CNN) model specifically designed to classify
+					CIFAR-10 images. Leveraging the inherent strengths of CNNs in feature extraction and classification,
+					our architecture incorporates:</p>
+				<ul>
+					<li>Multiple convolutional layers to learn hierarchical features from images.</li>
+					<li>Max-pooling layers to reduce spatial dimensions and extract essential features.</li>
+					<li>Fully connected layers for robust classification.</li>
+				</ul>
+				<p>The study also explores various CNN training strategies, including hyperparameter tuning and
+					architectural variations. Our trained model demonstrates competitive accuracy, emphasizing the
+					efficiency and robustness of CNNs, especially in resource-constrained environments.</p>
+				<p>These findings underline the potential of CNNs for real-world applications in image classification,
+					showcasing their capability to deliver high performance with optimized computational resources.</p>
+			</article>
+			</article>
+
+			<!-- Introduction -->
+			<article id="introduction">
+				<h2 class="major">Introduction</h2>
+				<span class="image main"><img src="./images/Sample Images.png" alt="CIFAR-10 Sample Images" /></span>
+				<p>Image classification is a fundamental task in computer vision, involving the categorization of images
+					into predefined classes based on visual characteristics. This capability is crucial for a wide range
+					of applications, including:</p>
+				<ul>
+					<li><strong>Autonomous Vehicles:</strong> Identifying road signs, pedestrians, and obstacles.</li>
+					<li><strong>Medical Diagnostics:</strong> Analyzing medical images to detect diseases or anomalies.
+					</li>
+					<li><strong>Security Systems:</strong> Recognizing faces, objects, and activities in surveillance
+						footage.</li>
+				</ul>
+				<p>Convolutional Neural Networks (CNNs) have emerged as the leading model for image classification
+					tasks, owing to their superior feature extraction capabilities. By leveraging their hierarchical
+					structure, CNNs can efficiently process structured datasets like CIFAR-10, identifying patterns and
+					features with high accuracy.</p>
+			</article>
+
+			<!-- Code -->
+			<article id="colab-notebook">
+				<h2 class="major">Google Colab Notebook</h2>
+				<p>Access the interactive Google Colab notebook for our project directly by clicking the button below:
+				</p>
+				<a href="https://colab.research.google.com/drive/1s_0TgtSrdDMW2C4NYHpw4mDS0N0PtTgJ" target="_blank"
+					class="button primary">Open Google Colab Notebook</a>
+			</article>
+
+
+
+			<!-- Method -->
+			<article id="method">
+				<h2 class="major">Method</h2>
+
+				<h3>1. Implementation Pipeline</h3>
+				<p>We implemented a CNN to classify CIFAR-10 images, covering data preprocessing, architecture design,
+					training with data augmentation, and evaluation of performance metrics.</p>
+
+				<h3>2. Data Preprocessing</h3>
+				<p>The CIFAR-10 dataset was normalized by scaling pixel values to the range [0, 1]. Class labels were
+					one-hot encoded to enable multi-class classification using the softmax output layer.</p>
+
+				<h3>3. Exploratory Data Analysis (EDA)</h3>
+				<img src="./images/dist.png" alt="EDA Visualization" class="summary-image" />
+				<p>The dataset is balanced with 60,000 images across 10 classes, ensuring no class imbalance. Each
+					training class contains 5,000 images, and each test class contains 1,000 images.</p>
+
+				<h3>4. Simple Logistic Regression and SVM with PCA</h3>
+				<p>Baseline models (Logistic Regression and SVM with PCA) were tested but achieved low accuracies of
+					~40%, confirming their inadequacy for CIFAR-10 image classification.</p>
+
+				<h3>5. CNN Model Architecture</h3>
+				<ul>
+					<li>Built using Keras’s Sequential API with four main convolutional blocks.</li>
+					<li>Each block includes convolutional layers, batch normalization, dropout, and max pooling.</li>
+					<li>Fully connected layers and a softmax output layer complete the architecture.</li>
+				</ul>
+
+				<h3>6. Training Strategy</h3>
+				<img src="./images/architecture.png" alt="Convolutional Neural Network Architecture" />
+				<p>The model was trained for up to 50 epochs using the Adam optimizer with a batch size of 64. Early
+					stopping with patience of 5 epochs prevented overfitting.</p>
+
+				<h3>7. Data Augmentation</h3>
+				<img src="./images/augmentation.png" alt="Augmented images generated from a single sample"
+					class="summary-image" />
+				<p>Real-time data augmentation techniques (e.g., rotations, flips, zooms) were applied to improve
+					generalization and prevent overfitting, using Keras’s ImageDataGenerator.</p>
+
+				<h3>8. Evaluation and Performance Metrics</h3>
+				<div class="image-container">
+					<img src="./images/evaluation.png" alt="Trends in training and validation metrics"
+						class="side-by-side-image" />
+					<img src="./images/confusion_mat.png" alt="Confusion Matrix" class="side-by-side-image" />
+				</div>
+				<p>The model was evaluated using accuracy, precision, recall, and F1-scores. A confusion matrix revealed
+					misclassification patterns, particularly between visually similar classes like "cats" and "dogs."
+				</p>
+
+				<h3>9. Key Insights</h3>
+				<ul>
+					<li>Robust preprocessing and data augmentation significantly improved generalization.</li>
+					<li>The CNN architecture outperformed simpler baseline models in feature extraction and
+						classification accuracy.</li>
+					<li>Standardizing hyperparameters ensured reproducibility and performance consistency.</li>
+				</ul>
+			</article>
+
+
+
+			<!-- Team -->
+			<article id="team">
+				<h2 class="major">Team Members</h2>
+				<div class="team-cards">
+					<div class="card">
+						<h3>Akash Pillai</h3>
+						<p><strong>Institute of Data Science</strong></p>
+						<p>Texas A&M, College Station, Texas</p>
+						<p>Email: <a href="mailto:akash.pillai.0810@tamu.edu">akash.pillai.0810@tamu.edu</a></p>
+					</div>
+					<div class="card">
+						<h3>Sukanya Sahoo</h3>
+						<p><strong>Institute of Data Science</strong></p>
+						<p>Texas A&M, College Station, Texas</p>
+						<p>Email: <a href="mailto:sukanya.sahoo@tamu.edu">sukanya.sahoo@tamu.edu</a></p>
+					</div>
+					<div class="card">
+						<h3>Lauren Fuller</h3>
+						<p><strong>Institute of Data Science</strong></p>
+						<p>Texas A&M, College Station, Texas</p>
+						<p>Email: <a href="mailto:lfuller6@tamu.edu">lfuller6@tamu.edu</a></p>
+					</div>
+					<div class="card">
+						<h3>Abhishek Singh</h3>
+						<p><strong>Institute of Data Science</strong></p>
+						<p>Texas A&M, College Station, Texas</p>
+						<p>Email: <a href="mailto:abhi_singh@tamu.edu">abhi_singh@tamu.edu</a></p>
+					</div>
+					<div class="card">
+						<h3>Asmita Desai</h3>
+						<p><strong>Institute of Data Science</strong></p>
+						<p>Texas A&M, College Station, Texas</p>
+						<p>Email: <a href="mailto:asmi@tamu.edu">asmi@tamu.edu</a></p>
+					</div>
+				</div>
+			</article>
+
+		</div>
+
+		<button id="open-references" class="button primary">View References</button>
+
+
+		<div id="references-popup" class="popup">
+			<div class="popup-content">
+				<span class="close-button">&times;</span>
+				<h2>References</h2>
+				<ol>
+					<li>A. Krizhevsky, “Learning multiple layers of features from tiny images,” CIFAR-10 Dataset
+						Technical Report, 2009. [Online]. Available: <a
+							href="https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf"
+							target="_blank">https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf</a></li>
+					<li>A. Krizhevsky, I. Sutskever, and G. E. Hinton, “ImageNet classification with deep convolutional
+						neural networks,” in Advances in Neural Information Processing Systems (NIPS), 2012, pp.
+						1097–1105.</li>
+					<li>H. M. ElSaid, A. Shamseldin, and M. E. Hussein, “Hybrid approach for CIFAR-10 classification
+						using CNN and SVM,” Journal of Artificial Intelligence and Data Mining, vol. 9, no. 2, pp.
+						83–89, 2021. DOI: <a href="https://doi.org/10.22044/jadm.2020.9590.2121"
+							target="_blank">10.22044/jadm.2020.9590.2121</a>.</li>
+					<li>S. Wang, X. Zhang, and L. Chen, “CIFAR-10 image classification using CNNs with PCA
+						dimensionality reduction,” IEEE Transactions on Image Processing, vol. 29, pp. 4823–4834, June
+						2020. DOI: <a href="https://doi.org/10.1109/TIP.2020.2976183"
+							target="_blank">10.1109/TIP.2020.2976183</a>.</li>
+					<li>Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner, “Gradient-based learning applied to document
+						recognition,” Proceedings of the IEEE, vol. 86, no. 11, pp. 2278–2324, November 1998.</li>
+					<li>A. Deshpande and S. Jangid, “Ensemble learning for CIFAR-10 classification using CNN and SVM,”
+						in Proceedings of the 18th International Conference on Computer Vision (ICCV), October 2021, pp.
+						3124–3133. DOI: <a href="https://doi.org/10.1109/ICCV.2021.00218"
+							target="_blank">10.1109/ICCV.2021.00218</a>.</li>
+					<li>M. Abadi et al., “TensorFlow: Large-scale machine learning on heterogeneous systems,” 2015.
+						[Online]. Available: <a href="https://tensorflow.org/"
+							target="_blank">https://tensorflow.org/</a>.</li>
+					<li>J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. Fei-Fei, “ImageNet: A large-scale
+						hierarchical image database,” in Proceedings of the IEEE Conference on Computer Vision and
+						Pattern Recognition (CVPR), June 2009, pp. 248–255.</li>
+					<li>S. Liu, Y. Wang, and X. Liu, “Integrating PCA with SVM for image classification on CIFAR-10,”
+						Springer Machine Vision Applications, vol. 17, pp. 45–57, April 2022.</li>
+					<li>H. Liu, “A comprehensive guide to PCA for image recognition,” Medium, 2023. [Online]. Available:
+						<a href="https://medium.com/pca-guide-cifar10"
+							target="_blank">https://medium.com/pca-guide-cifar10</a>.</li>
+					<li>D. Kingma and J. Ba, “Adam: A method for stochastic optimization,” arXiv preprint
+						arXiv:1412.6980, 2014. [Online]. Available: <a href="https://arxiv.org/abs/1412.6980"
+							target="_blank">https://arxiv.org/abs/1412.6980</a>.</li>
+				</ol>
+			</div>
+		</div>
+
+
+		<!-- Footer -->
+		<footer id="footer">
+			<p class="copyright">ECEN-758 Group Project</p>
+		</footer>
+
+	</div>
+
+	<!-- BG -->
+	<div id="bg"></div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
